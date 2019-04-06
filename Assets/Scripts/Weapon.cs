@@ -25,11 +25,12 @@ public class Weapon : MonoBehaviour
 
 	public void Shoot(Transform source, Vector3 target)
 	{
-		if (Time.time > NextShot)
+		if (Time.time > NextShot && Ammo > 0)
 		{
 			var clone = Instantiate(Projectile, transform.position, transform.rotation);
 			clone.GetComponent<Bullet>().Target = target;
 			NextShot = Time.time + FireRate;
+			Ammo--;
 		}
 		Debug.Log("NextShot, Time " + NextShot + " " + Time.time);
 	}

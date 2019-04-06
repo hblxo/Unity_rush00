@@ -8,6 +8,7 @@ public class Pistol : Weapon {
 	void Start ()
 	{
 		this.Projectile = Resources.Load("BulletPistolPrefab") as GameObject;
+		this.Ammo = 12;
 		this.FireRate = 0.5f;
 		Debug.Log(this.Projectile);
 	}

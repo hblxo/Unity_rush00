@@ -35,6 +35,11 @@ public class PlayerScript : MonoBehaviour
 		{
 			_weapon.Shoot(transform, Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		}
+
+		if (Input.GetButtonDown("Fire2"))
+		{
+			Destroy(_weapon);
+		}
 	}
 	
 }

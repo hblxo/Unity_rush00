@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4646866042128216}
   - component: {fileID: 212077606536259348}
   - component: {fileID: 114534213469269148}
+  - component: {fileID: 50394238375884860}
   m_Layer: 0
   m_Name: BulletPistolPrefab
   m_TagString: Untagged
@@ -41,6 +42,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50394238375884860
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1277287374097128}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &114534213469269148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,7 +74,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0
+  StartTime: 0
   Enemy: 0
+  Target: {x: 0, y: 0, z: 0}
+  Direction: {x: 0, y: 0, z: 0}
+  Lifespan: 0
 --- !u!212 &212077606536259348
 SpriteRenderer:
   m_ObjectHideFlags: 1
