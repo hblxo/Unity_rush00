@@ -20,10 +20,7 @@ public class TitleAnimation : MonoBehaviour {
 
 	void Awake () 
 	{
-		transform.Rotate(Vector3.forward,-12);
-		// TODO: add optional delay when to start
-
-		
+		transform.Rotate(Vector3.forward, -12);
 		StartCoroutine("PlayText");
 	}
 
