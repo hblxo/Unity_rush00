@@ -7,11 +7,13 @@ public class PlayerScript : MonoBehaviour
 	private float _speed = 0.1f;
 	private GameObject _weaponObj;
 	private Weapon _weapon;
+	private Animator _animator;
 	public GameObject StartingWeapon;
 	
 	// Use this for initialization
 	void Start ()
 	{
+		_animator = gameObject.GetComponentInChildren<Animator>();
 		_weaponObj = Instantiate(StartingWeapon, transform.position + new Vector3(-0.2f, -0.2f, 0f), transform.rotation, transform);
 		_weapon = _weaponObj.GetComponent<Weapon>();
 		_weaponObj.GetComponent<SpriteRenderer>().sprite = _weapon.ViewModel;
@@ -22,6 +24,14 @@ public class PlayerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Input.GetAxisRaw("Horizontal") != 0|| Input.GetAxisRaw("Vertical") != 0)
+		{
+			_animator.SetBool("walk", true);
+		}
+		else
+		{
+			_animator.SetBool("walk", false);
+		}
 		transform.position = new Vector3(transform.position.x + Input.GetAxisRaw("Horizontal") * _speed, transform.position.y + Input.GetAxisRaw("Vertical") * _speed, 0);
 		Vector3 mousePos = Input.mousePosition;
 		mousePos.z = 0;
@@ -43,10 +53,20 @@ public class PlayerScript : MonoBehaviour
 
 		if (Input.GetButtonDown("Fire2"))
 		{
-			_weaponObj.GetComponent<SpriteRenderer>().sprite = _weapon.WorldModel;
-			_weaponObj.transform.parent = null;
 			_weapon.Drop(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 			_weaponObj = null;
+			_weapon = null;
+		}
+	}
+
+	private void OnTriggerStay2D(Collider2D col)
+	{
+		if (Input.GetKeyDown("e") && col.gameObject.CompareTag("Weapon") && !_weaponObj)
+		{
+			col.gameObject.transform.parent = transform;
+			_weaponObj = col.gameObject;
+			_weapon = _weaponObj.GetComponent<Weapon>();
+			_weapon.Equip();
 		}
 	}
 	

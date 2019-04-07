@@ -10,7 +10,7 @@ public class Pistol : Weapon {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	private new void Update ()
 	{
 		base.Update();
 	}
