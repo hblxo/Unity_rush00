@@ -23,8 +23,4 @@ public class AmmoUI : MonoBehaviour
 			GetComponent<SpriteRenderer>().sprite = EmptyAmmoSprite;
 	}
 
-	public void GameOver()
-	{
-		
-	}
 }
