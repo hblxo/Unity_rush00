@@ -7,19 +7,19 @@ public class UIManager : MonoBehaviour
 {
 	public GameManager Gm;
 	public Text Ammo;
-	public Canvas GameOverTitle;
+//	public Canvas GameOverTitle;
 	
 	// Use this for initialization
 	void Start () {
-		GameOverTitle.GetComponent<Canvas>();
-		GameOverTitle.enabled = false;
+//		GameOverTitle.GetComponent<Canvas>();
+//		GameOverTitle.enabled = false;
 		SetProperties();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Gm.IsDead)
-			GameOverTitle.enabled = true;
+//		if (Gm.IsDead)
+//			GameOverTitle.enabled = true;
 		SetProperties();
 	}
 	

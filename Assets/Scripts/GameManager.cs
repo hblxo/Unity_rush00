@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Gm;
-	public int PlayerAmmo;
+	[HideInInspector]public int PlayerAmmo;
 	private Weapon _weapon;
 	public GameObject Player;
 	public bool IsDead = false;
@@ -20,7 +23,9 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		PlayerAmmo = 0;
+//		PlayerAmmo = 0;
+		_weapon = Player.GetComponentInChildren<Weapon>();
+		PlayerAmmo = _weapon ? _weapon.Ammo : 0;
 	}
 	
 	// Update is called once per frame
@@ -33,13 +38,16 @@ public class GameManager : MonoBehaviour
 
 	private void UpdateAmmo()
 	{
-		_weapon = Player.GetComponent<Weapon>();
+		_weapon = Player.GetComponentInChildren<Weapon>();
 		PlayerAmmo = _weapon ? _weapon.Ammo : 0;
 	}
 
 	public void GameOver()
 	{
 		IsDead = true;
-//		Time.timeScale = 0;
+		Time.timeScale = 0;
+
+		if (Input.GetKeyDown("r"))
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }
