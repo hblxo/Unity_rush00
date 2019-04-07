@@ -9,55 +9,66 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1200187890643944}
+  m_RootGameObject: {fileID: 1596120291452772}
   m_IsPrefabParent: 1
---- !u!1 &1200187890643944
+--- !u!1 &1596120291452772
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4236722799049058}
-  - component: {fileID: 212733952954828188}
-  - component: {fileID: 114546056946811730}
+  - component: {fileID: 4972587384705120}
+  - component: {fileID: 212710890711645108}
+  - component: {fileID: 114727920967555166}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Weapon_Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4236722799049058
+--- !u!4 &4972587384705120
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1200187890643944}
+  m_GameObject: {fileID: 1596120291452772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7277894, y: -0.4770272, z: 0}
+  m_LocalPosition: {x: -1.3347017, y: -1.288997, z: 0.049964275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114546056946811730
+--- !u!114 &114727920967555166
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1200187890643944}
+  m_GameObject: {fileID: 1596120291452772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 415af1ace603b48adb66d197f9772081, type: 3}
+  m_Script: {fileID: 11500000, guid: dcb3a8382733447528040624329c3d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &212733952954828188
+  Projectile: {fileID: 0}
+  FireRate: 0
+  Range: 0
+  BulletSpeed: 0
+  Ammo: 0
+  NextShot: 0
+  ViewModel: {fileID: 0}
+  WorldModel: {fileID: 0}
+  IsEquipped: 0
+  Target: {x: 0, y: 0, z: 0}
+  Direction: {x: 0, y: 0, z: 0}
+--- !u!212 &212710890711645108
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1200187890643944}
+  m_GameObject: {fileID: 1596120291452772}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -85,14 +96,14 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: da90921eb8915448d9794019bab7e99e, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.6875, y: 0.78125}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0

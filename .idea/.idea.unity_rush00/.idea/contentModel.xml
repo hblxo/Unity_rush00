@@ -29,6 +29,7 @@
         <e p="BulletPistol.cs" t="Include" />
         <e p="Pistol.cs" t="Include" />
         <e p="PlayerScript.cs" t="Include" />
+        <e p="Shotgun.cs" t="Include" />
         <e p="Test.cs" t="Include" />
         <e p="Weapon.cs" t="Include" />
       </e>
