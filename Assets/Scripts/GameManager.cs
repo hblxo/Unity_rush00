@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	public int PlayerAmmo;
 	private Weapon _weapon;
 	public GameObject Player;
+	public bool IsDead = false;
 	
 	//Singleton basique  : Voir unity design patterns sur google.
 	void Awake () {
@@ -25,15 +26,20 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Gm.IsDead)
+			GameOver();
 		UpdateAmmo();
 	}
 
 	private void UpdateAmmo()
 	{
 		_weapon = Player.GetComponent<Weapon>();
-		if (_weapon)
-			PlayerAmmo = _weapon.Ammo;
-		else
-			PlayerAmmo = 0;
+		PlayerAmmo = _weapon ? _weapon.Ammo : 0;
+	}
+
+	public void GameOver()
+	{
+		IsDead = true;
+//		Time.timeScale = 0;
 	}
 }

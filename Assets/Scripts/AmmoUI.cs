@@ -10,17 +10,16 @@ public class AmmoUI : MonoBehaviour
 	public Sprite EmptyAmmoSprite;
 	
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Gm.PlayerAmmo > 0)
-			GetComponent<SpriteRenderer>().sprite = FullAmmoSprite;
-		else
-			GetComponent<SpriteRenderer>().sprite = EmptyAmmoSprite;
+		GetComponent<SpriteRenderer>().sprite = Gm.PlayerAmmo > 0 ? FullAmmoSprite : EmptyAmmoSprite;
 	}
 
+	
+	
 }

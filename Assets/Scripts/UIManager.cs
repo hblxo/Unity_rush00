@@ -5,21 +5,26 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-	public GameManager GM;
+	public GameManager Gm;
 	public Text Ammo;
+	public Canvas GameOverTitle;
 	
 	// Use this for initialization
 	void Start () {
+		GameOverTitle.GetComponent<Canvas>();
+		GameOverTitle.enabled = false;
 		SetProperties();
 	}
 	
 	// Update is called once per frame
-	void Update () {	
+	void Update () {
+		if (Gm.IsDead)
+			GameOverTitle.enabled = true;
 		SetProperties();
 	}
 	
 	public void SetProperties()
 	{
-		Ammo.text = GM.PlayerAmmo.ToString();
+		Ammo.text = Gm.PlayerAmmo.ToString();
 	}
 }
