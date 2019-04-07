@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 	
-	public float speed = 1f;
-	private Vector3 _botPos;
+	public float Speed = 1f;
+	private Vector3 _playerPos;
 	private Animator _animator;
 	private Vector3 _target;
 	private bool _isMoving;
@@ -13,31 +13,31 @@ public class Enemy : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		_botPos = transform.position;
+		_playerPos = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
 		if (_isMoving)
-			transform.position = Vector3.MoveTowards(transform.position, _botPos, speed * Time.deltaTime);
-		if (transform.position == _botPos)
+			transform.position = Vector3.MoveTowards(transform.position, _playerPos, Speed * Time.deltaTime);
+		if (transform.position == _playerPos)
 		{
 			_isMoving = false;
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D bot)
+	private void OnTriggerStay2D(Collider2D charac)
 	{
-		Move(bot.gameObject);
+		if (charac.gameObject.CompareTag("Player"))
+			Move(charac.gameObject);
 	}
-	
-	
-	public void Move(GameObject bot)
+		
+	public void Move(GameObject player)
 	{
-		_botPos = bot.transform.position;
-		_botPos.z = transform.position.z;
-		_target = bot.transform.position;
+		_playerPos = player.transform.position;
+		_playerPos.z = transform.position.z;
+		_target = player.transform.position;
 		_target.z = 0;
 
 		Vector3 objectPos = transform.position;
