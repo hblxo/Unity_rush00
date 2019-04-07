@@ -18,7 +18,11 @@ public class Bullet : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	public void Update () {
+		if (this.StartTime + this.Lifespan < Time.time)
+		{
+			Destroy(gameObject);
+		}
+		transform.position += this.Direction * this.Speed;
 	}
 }

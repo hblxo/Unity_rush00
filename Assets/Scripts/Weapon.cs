@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour
 	
 	// Update is called once per frame
 	public virtual void Update () {
-		if (!this.IsEquipped && this.Target != transform.position)
+		if (!this.IsEquipped && this.Target != transform.position && Target.x != 0f && Target.y != 0f)
 		{
 			transform.position += this.Direction * 0.05f;
 			transform.Rotate (Vector3.forward * -25);
@@ -57,8 +57,21 @@ public class Weapon : MonoBehaviour
 		}
 	}
 
+	public void Equip()
+	{
+		Quaternion save = transform.parent.rotation;
+		gameObject.GetComponent<SpriteRenderer>().sprite = ViewModel;
+		transform.parent.rotation = new Quaternion(0,0,0,0); // very degueulasse but i'm nul en maths so foutez moi la paix
+		transform.position = transform.parent.transform.position + new Vector3(-0.2f, -0.2f, 0f);
+		transform.parent.rotation = save;
+		transform.rotation = transform.parent.rotation;
+		IsEquipped = true;
+	}
+	
 	public void Drop(Vector3 target)
 	{
+		gameObject.transform.parent = null;
+		gameObject.GetComponent<SpriteRenderer>().sprite = WorldModel;
 		target.z = 0;
 		Direction = (target - transform.position).normalized;
 		Direction.z = 0f;
