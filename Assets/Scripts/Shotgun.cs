@@ -1,17 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : Weapon {
+public class Shotgun : Weapon {
 
 	// Use this for initialization
-	void Start ()
-	{
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame
-	void Update ()
-	{
+	void Update () {
 		base.Update();
 	}
 }

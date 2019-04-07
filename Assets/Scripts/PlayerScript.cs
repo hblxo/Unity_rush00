@@ -1,17 +1,21 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
 	private float _speed = 0.1f;
+	private GameObject _weaponObj;
 	private Weapon _weapon;
+	public GameObject StartingWeapon;
 	
 	// Use this for initialization
 	void Start ()
 	{
-		gameObject.AddComponent<Pistol>();
-		_weapon = gameObject.GetComponent<Weapon>();
+		_weaponObj = Instantiate(StartingWeapon, transform.position + new Vector3(-0.2f, -0.2f, 0f), transform.rotation, transform);
+		_weapon = _weaponObj.GetComponent<Weapon>();
+		_weaponObj.GetComponent<SpriteRenderer>().sprite = _weapon.ViewModel;
+		_weapon.IsEquipped = true;
 		Debug.Log("Player spawned at: " + transform.position);
 	}
 	
@@ -33,12 +37,16 @@ public class PlayerScript : MonoBehaviour
 		
 		if (Input.GetButton("Fire1"))
 		{
+			_weapon = _weaponObj.GetComponent<Weapon>();
 			_weapon.Shoot(transform, Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		}
 
 		if (Input.GetButtonDown("Fire2"))
 		{
-			Destroy(_weapon);
+			_weaponObj.GetComponent<SpriteRenderer>().sprite = _weapon.WorldModel;
+			_weaponObj.transform.parent = null;
+			_weapon.Drop(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+			_weaponObj = null;
 		}
 	}
 	
