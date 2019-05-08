@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
 	private Weapon _weapon;
 	private Animator _animator;
 	public GameObject StartingWeapon;
-	private Rigidbody2D _playerBody;
+	private Rigidbody2D _body;
 	private float _horizontal;
 	private float _vertical;
 	
@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour
 		_weapon = _weaponObj.GetComponent<Weapon>();
 		_weaponObj.GetComponent<SpriteRenderer>().sprite = _weapon.ViewModel;
 		_weapon.IsEquipped = true;
-		_playerBody = GetComponent<Rigidbody2D>();
+		_body = GetComponent<Rigidbody2D>();
 		Debug.Log("Player spawned at: " + transform.position);
 	}
 	
@@ -66,7 +66,7 @@ public class PlayerScript : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		_playerBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * _speed, Input.GetAxisRaw("Vertical") * _speed);
+		_body.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * _speed, Input.GetAxisRaw("Vertical") * _speed);
 	}
 
 	private void OnTriggerStay2D(Collider2D col)

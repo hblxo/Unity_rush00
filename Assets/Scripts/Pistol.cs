@@ -5,8 +5,9 @@ using UnityEngine;
 public class Pistol : Weapon {
 
 	// Use this for initialization
-	void Start ()
+	private new void Start ()
 	{
+		base.Start();
 	}
 	
 	// Update is called once per frame
