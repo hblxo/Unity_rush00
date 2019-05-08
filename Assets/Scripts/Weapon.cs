@@ -66,6 +66,7 @@ public class Weapon : MonoBehaviour
 		transform.parent.rotation = save;
 		transform.rotation = transform.parent.rotation;
 		IsEquipped = true;
+		gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
 	}
 	
 	public void Drop(Vector3 target)
@@ -77,5 +78,6 @@ public class Weapon : MonoBehaviour
 		Direction.z = 0f;
 		Target = transform.position + Direction * 2;
 		IsEquipped = false;
+		gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
 	}
 }
