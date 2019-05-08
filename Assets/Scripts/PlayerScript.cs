@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-	private float _speed = 0.1f;
+	private float _speed = 5f;
 	private GameObject _weaponObj;
 	private Weapon _weapon;
 	private Animator _animator;
 	public GameObject StartingWeapon;
+	private Rigidbody2D _playerBody;
+	private float _horizontal;
+	private float _vertical;
 	
 	// Use this for initialization
 	void Start ()
@@ -18,13 +21,16 @@ public class PlayerScript : MonoBehaviour
 		_weapon = _weaponObj.GetComponent<Weapon>();
 		_weaponObj.GetComponent<SpriteRenderer>().sprite = _weapon.ViewModel;
 		_weapon.IsEquipped = true;
+		_playerBody = GetComponent<Rigidbody2D>();
 		Debug.Log("Player spawned at: " + transform.position);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetAxisRaw("Horizontal") != 0|| Input.GetAxisRaw("Vertical") != 0)
+		_horizontal = Input.GetAxisRaw("Horizontal");
+		_vertical = Input.GetAxisRaw("Vertical");
+		if (_horizontal != 0|| _vertical != 0)
 		{
 			_animator.SetBool("walk", true);
 		}
@@ -32,10 +38,9 @@ public class PlayerScript : MonoBehaviour
 		{
 			_animator.SetBool("walk", false);
 		}
-		transform.position = new Vector3(transform.position.x + Input.GetAxisRaw("Horizontal") * _speed, transform.position.y + Input.GetAxisRaw("Vertical") * _speed, 0);
 		Vector3 mousePos = Input.mousePosition;
 		mousePos.z = 0;
-
+	
 		Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
 		mousePos.x = mousePos.x - objectPos.x;
 		mousePos.y = mousePos.y - objectPos.y;
@@ -57,6 +62,11 @@ public class PlayerScript : MonoBehaviour
 			_weaponObj = null;
 			_weapon = null;
 		}
+	}
+
+	private void FixedUpdate()
+	{
+		_playerBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * _speed, Input.GetAxisRaw("Vertical") * _speed);
 	}
 
 	private void OnTriggerStay2D(Collider2D col)
