@@ -30,12 +30,13 @@ public class Bullet : MonoBehaviour
 		//transform.position += this.Direction * this.Speed;
 	}
 
-	public void OnTriggerEnter2D(Collider2D other)
+	public void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Block"))
 		{
-			Debug.Log(other.gameObject);
 			Destroy(gameObject);
 		}
+		Debug.Log(other.gameObject);
+
 	}
 }

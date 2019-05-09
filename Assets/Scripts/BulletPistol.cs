@@ -17,8 +17,8 @@ public class BulletPistol : Bullet
 		base.Update();
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
+	private new void OnCollisionEnter2D(Collision2D other)
 	{
-		base.OnTriggerEnter2D(other);
+		base.OnCollisionEnter2D(other);
 	}
 }

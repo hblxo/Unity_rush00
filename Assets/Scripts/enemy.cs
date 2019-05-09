@@ -9,10 +9,13 @@ public class Enemy : MonoBehaviour {
 	private Animator _animator;
 	private Vector3 _target;
 	private bool _isMoving;
-
+	private int _layerMask;
 	
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+		_layerMask = 1 << 2;
+		_layerMask = ~_layerMask;
 		_playerPos = transform.position;
 	}
 	
@@ -29,7 +32,11 @@ public class Enemy : MonoBehaviour {
 
 	private void OnTriggerStay2D(Collider2D charac)
 	{
-		if (charac.gameObject.CompareTag("Player"))
+		var hit = Physics2D.Linecast(transform.position, charac.transform.position, _layerMask);
+		Debug.DrawRay(transform.position,
+			hit.point, Color.yellow);
+		Debug.Log(hit.rigidbody.gameObject);
+		if (charac.gameObject.CompareTag("Player") && hit.rigidbody.gameObject.CompareTag("Player"))
 			Move(charac.gameObject);
 	}
 		
