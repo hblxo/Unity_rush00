@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 212917717473546128}
   - component: {fileID: 50990716758554318}
   - component: {fileID: 61716478406915968}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Weapon_Uzi
   m_TagString: Weapon
   m_Icon: {fileID: 0}

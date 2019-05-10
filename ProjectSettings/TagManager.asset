@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Weapon
   - Block
+  - Enemy
+  - Lethal
   layers:
   - Default
   - TransparentFX
@@ -15,12 +17,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Bullets
+  - Allies
+  - Terrain
+  - Enemies
+  - Objects
+  - Interactable
   - 
   - 
   - 

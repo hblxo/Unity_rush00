@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 114664061797041240}
   - component: {fileID: 50503210360747084}
   - component: {fileID: 58015933356517974}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletPistolPrefab
-  m_TagString: Untagged
+  m_TagString: Lethal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,11 +50,11 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1484307267052292}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c155a646e1c424aa7ac53cc59ff20fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 8
+  Speed: 16
   StartTime: 0
   Enemy: 0
   Target: {x: 0, y: 0, z: 0}

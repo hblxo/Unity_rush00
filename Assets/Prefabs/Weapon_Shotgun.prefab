@@ -163,7 +163,7 @@ MonoBehaviour:
   NextShot: 0
   ViewModel: {fileID: 21300000, guid: 2775ead70e19f415884382d7d0911c04, type: 3}
   WorldModel: {fileID: 21300000, guid: b99032e6f1f9a49e5adb932489c76376, type: 3}
-  Spread: 0.04
+  Spread: 0.15
   IsEquipped: 0
   NumberOfShots: 6
   Target: {x: 0, y: 0, z: 0}
