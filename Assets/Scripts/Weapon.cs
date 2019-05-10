@@ -29,7 +29,6 @@ public class Weapon : MonoBehaviour
 	public void Start ()
 	{
 		_body = GetComponent<Rigidbody2D>();
-		Debug.Log(_body);
 		NextShot = 0f;
 	}
 	
@@ -44,6 +43,7 @@ public class Weapon : MonoBehaviour
 		//{
 //			transform.Rotate (Vector3.forward * -25);
 			_body.velocity *= 0.95f;
+			_body.angularVelocity *= 0.9f;
 		//}
 	}
 
@@ -53,13 +53,14 @@ public class Weapon : MonoBehaviour
 		{
 			for (int i = 0; i < NumberOfShots; i++)
 			{
-				var clone = Instantiate(Projectile, transform.position, transform.rotation);
+				var direction = -transform.up;
+				direction.z = 0f;
+				direction.x += Random.Range(-Spread, Spread);
+				direction.y += Random.Range(-Spread, Spread);
+				direction = direction.normalized;
+				var clone = Instantiate(Projectile, transform.position + direction * 0.4f, transform.rotation);
 				Bullet blt = clone.GetComponent<Bullet>();
-				target.z = 0f;
-				blt.Direction = (target - transform.position).normalized;
-				blt.Direction.x += Random.Range(-Spread, Spread);
-				blt.Direction.y += Random.Range(-Spread, Spread);
-				blt.Direction = blt.Direction.normalized;
+				blt.Direction = direction;
 			}
 			NextShot = Time.time + FireRate;
 			Ammo--;
@@ -76,7 +77,8 @@ public class Weapon : MonoBehaviour
 		transform.rotation = transform.parent.rotation;
 		IsEquipped = true;
 		gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
-		_body.velocity = new Vector2(0, 0);;
+		_body.velocity = new Vector2(0, 0);
+		_body.bodyType = RigidbodyType2D.Kinematic;
 	}
 	
 	public void Drop(Vector3 target)
@@ -90,5 +92,6 @@ public class Weapon : MonoBehaviour
 		IsEquipped = false;
 		gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
 		_body.velocity = -gameObject.transform.up * Force;
+		_body.bodyType = RigidbodyType2D.Dynamic;
 	}
 }

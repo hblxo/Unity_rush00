@@ -21,8 +21,10 @@ public class PlayerScript : MonoBehaviour
 		_weapon = _weaponObj.GetComponent<Weapon>();
 		_weaponObj.GetComponent<SpriteRenderer>().sprite = _weapon.ViewModel;
 		_weapon.IsEquipped = true;
+		_weapon.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 		_body = GetComponent<Rigidbody2D>();
 		Debug.Log("Player spawned at: " + transform.position);
+		Debug.Log("Body:", _body);
 	}
 	
 	// Update is called once per frame
@@ -73,8 +75,9 @@ public class PlayerScript : MonoBehaviour
 	{
 		if (Input.GetKeyDown("e") && col.gameObject.CompareTag("Weapon") && !_weaponObj)
 		{
-			col.gameObject.transform.parent = transform;
-			_weaponObj = col.gameObject;
+			var wep = col.gameObject.transform.parent;
+			wep.gameObject.transform.parent = transform;
+			_weaponObj = wep.gameObject;
 			_weapon = _weaponObj.GetComponent<Weapon>();
 			_weapon.Equip();
 		}

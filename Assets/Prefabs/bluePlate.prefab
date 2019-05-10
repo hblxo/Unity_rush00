@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212545203683527200}
   - component: {fileID: 50457717301382466}
   - component: {fileID: 61180578964096092}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bluePlate
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675834880579550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9656953, y: -0.9851296, z: 0}
+  m_LocalPosition: {x: -1.9862298, y: -2.031371, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
