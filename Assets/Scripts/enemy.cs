@@ -32,12 +32,14 @@ public class Enemy : MonoBehaviour {
 
 	private void OnTriggerStay2D(Collider2D charac)
 	{
+		if (!charac.gameObject.CompareTag("Player")) return;
 		var hit = Physics2D.Linecast(transform.position, charac.transform.position, _layerMask);
 		Debug.DrawRay(transform.position,
-			hit.point, Color.yellow);
-		Debug.Log(hit.rigidbody.gameObject);
-		if (charac.gameObject.CompareTag("Player") && hit.rigidbody.gameObject.CompareTag("Player"))
+			hit.point - (Vector2)transform.position, Color.yellow);
+		if (hit.rigidbody.gameObject.CompareTag("Player"))
+		{
 			Move(charac.gameObject);
+		}
 	}
 		
 	public void Move(GameObject player)
