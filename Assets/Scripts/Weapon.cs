@@ -42,11 +42,22 @@ public class Weapon : MonoBehaviour
 		//while (Mathf.Abs(_body.velocity.x) > 0.01f || Mathf.Abs(_body.velocity.y) > 0.01f)
 		//{
 //			transform.Rotate (Vector3.forward * -25);
-			_body.velocity *= 0.95f;
-			_body.angularVelocity *= 0.9f;
 		//}
 	}
 
+	public virtual void FixedUpdate () 
+	{
+//		if (!this.IsEquipped && this.Target != transform.position && Target.x != 0f && Target.y != 0f)
+//		{
+//			transform.Rotate (Vector3.forward * -25);
+//		}
+		//while (Mathf.Abs(_body.velocity.x) > 0.01f || Mathf.Abs(_body.velocity.y) > 0.01f)
+		//{
+//			transform.Rotate (Vector3.forward * -25);
+		//_body.velocity *= 0.90f;
+		//}
+	}
+	
 	public void Shoot(Transform source, Vector3 target)
 	{
 		if (Time.time > NextShot && Ammo > 0)
@@ -91,7 +102,8 @@ public class Weapon : MonoBehaviour
 		Target = transform.position + Direction * 2;
 		IsEquipped = false;
 		gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
-		_body.velocity = -gameObject.transform.up * Force;
 		_body.bodyType = RigidbodyType2D.Dynamic;
+		_body.velocity = -gameObject.transform.up * Force;
+		_body.AddTorque(Random.Range(-180f, 180f));
 	}
 }
