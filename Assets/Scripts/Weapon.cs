@@ -29,6 +29,7 @@ public class Weapon : MonoBehaviour
 	public void Start ()
 	{
 		_body = GetComponent<Rigidbody2D>();
+
 		NextShot = 0f;
 	}
 	
@@ -58,7 +59,7 @@ public class Weapon : MonoBehaviour
 		//}
 	}
 	
-	public void Shoot(Transform source, Vector3 target)
+	public virtual void Shoot()
 	{
 		if (Time.time > NextShot && Ammo > 0)
 		{
@@ -78,7 +79,7 @@ public class Weapon : MonoBehaviour
 		}
 	}
 
-	public void Equip()
+	public virtual void Equip()
 	{
 		Quaternion save = transform.parent.rotation;
 		gameObject.GetComponent<SpriteRenderer>().sprite = ViewModel;
