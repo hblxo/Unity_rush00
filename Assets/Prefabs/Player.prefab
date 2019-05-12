@@ -198,6 +198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingWeapon: {fileID: 1596120291452772, guid: f3a952547f6c742e6bdaf5705ba4483e,
     type: 2}
+  DefaultWeapon: {fileID: 1178407156727138, guid: a0ea9d200d9f844d998acb4809cc7f6a,
+    type: 2}
 --- !u!212 &212044993180325084
 SpriteRenderer:
   m_ObjectHideFlags: 1
