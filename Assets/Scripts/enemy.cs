@@ -9,10 +9,19 @@ public class Enemy : MonoBehaviour {
 	private Animator _animator;
 	private Vector3 _target;
 	private bool _isMoving;
-
+	public LayerMask Mask;
+	public GameObject Head;
+	public GameObject Body;
+	public GameObject Legs;
+	public Sprite[] HeadSprites;
+	public Sprite[] BodySprites;
 	
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+		Head.GetComponent<SpriteRenderer>().sprite = HeadSprites[Random.Range(0, HeadSprites.Length)];
+		Body.GetComponent<SpriteRenderer>().sprite = BodySprites[Random.Range(0, BodySprites.Length)];
+		_animator = GetComponentInChildren<Animator>();
 		_playerPos = transform.position;
 	}
 	
@@ -20,19 +29,39 @@ public class Enemy : MonoBehaviour {
 	void Update()
 	{
 		if (_isMoving)
+		{
 			transform.position = Vector3.MoveTowards(transform.position, _playerPos, Speed * Time.deltaTime);
+			_animator.SetBool("walk", true);
+		}
+
 		if (transform.position == _playerPos)
 		{
 			_isMoving = false;
+			_animator.SetBool("walk", false);
 		}
 	}
 
 	private void OnTriggerStay2D(Collider2D charac)
 	{
-		if (charac.gameObject.CompareTag("Player"))
+		if (!charac.gameObject.CompareTag("Player")) return;
+		var hit = Physics2D.Linecast(transform.position, charac.transform.position, Mask);
+		Debug.DrawRay(transform.position,
+			hit.point - (Vector2)transform.position, Color.yellow);
+		if (hit.rigidbody.gameObject.CompareTag("Player"))
+		{
 			Move(charac.gameObject);
+		}
 	}
-		
+
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+		if (other.gameObject.CompareTag("Lethal"))
+		{
+			Destroy(gameObject);
+		}
+			
+	}
+
 	public void Move(GameObject player)
 	{
 		_playerPos = player.transform.position;

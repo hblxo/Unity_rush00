@@ -11,18 +11,32 @@ public class Bullet : MonoBehaviour
 	public Vector3 Target;
 	public Vector3 Direction;
 	public float Lifespan;
+	private Rigidbody2D _body;
 	
 	// Use this for initialization
-	void Start () {
-		
+	public void Start ()
+	{
+		StartTime = Time.time;
+		_body = GetComponent<Rigidbody2D>();
+		_body.velocity = Direction * Speed;
 	}
 	
 	// Update is called once per frame
 	public void Update () {
-		if (this.StartTime + this.Lifespan < Time.time)
+		if (this.StartTime + Lifespan < Time.time)
 		{
 			Destroy(gameObject);
 		}
-		transform.position += this.Direction * this.Speed;
+		//transform.position += this.Direction * this.Speed;
+	}
+
+	public void OnCollisionEnter2D(Collision2D other)
+	{
+		if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Block"))
+		{
+			Destroy(gameObject);
+		}
+		Debug.Log(other.gameObject);
+
 	}
 }
