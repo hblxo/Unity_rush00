@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
 
 	public void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Block"))
+		if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Block") || other.gameObject.CompareTag("Player"))
 		{
 			Destroy(gameObject);
 		}

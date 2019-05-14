@@ -33,7 +33,7 @@ public class Unarmed : Weapon {
 		}
 	}
 
-	public override void Equip()
+	public override void Equip(GameObject parent)
 	{
 		Quaternion save = transform.parent.rotation;
 		transform.parent.rotation = new Quaternion(0,0,0,0); // very degueulasse but i'm nul en maths so foutez moi la paix

@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
 	private Animator _animator;
 	public GameObject StartingWeapon;
 	public GameObject DefaultWeapon;
+	private GameObject _defaultWeaponObj;
 	private Rigidbody2D _body;
 	private float _horizontal;
 	private float _vertical;
@@ -19,6 +20,8 @@ public class PlayerScript : MonoBehaviour
 	void Start ()
 	{
 		_animator = gameObject.GetComponentInChildren<Animator>();
+		_defaultWeaponObj = Instantiate(DefaultWeapon, transform.position + -transform.up * 0.2f, transform.rotation,
+			transform);
 		_weaponObj = Instantiate(StartingWeapon, transform.position + new Vector3(-0.2f, -0.2f, 0f), transform.rotation, transform);
 		_weapon = _weaponObj.GetComponent<Weapon>();
 		if (_weapon.GetComponent<SpriteRenderer>())
@@ -68,9 +71,8 @@ public class PlayerScript : MonoBehaviour
 		{
 			if (_hasWeaponEquipped)
 			{
-				_weapon.Drop(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-				_weaponObj = Instantiate(DefaultWeapon, transform.position + -transform.up * 0.2f, transform.rotation,
-					transform);
+				_weapon.Drop();
+				_weaponObj = _defaultWeaponObj;
 				_weapon = _weaponObj.GetComponent<Weapon>();
 				//_weapon.Equip();
 				_hasWeaponEquipped = false;
@@ -88,12 +90,21 @@ public class PlayerScript : MonoBehaviour
 		if (Input.GetKeyDown("e") && col.gameObject.CompareTag("Weapon") && !_hasWeaponEquipped)
 		{
 			var wep = col.gameObject.transform.parent;
-			wep.gameObject.transform.parent = transform;
+			//wep.gameObject.transform.parent = transform;
 			_weaponObj = wep.gameObject;
 			_weapon = _weaponObj.GetComponent<Weapon>();
-			_weapon.Equip();
+			_weapon.Equip(gameObject);
 			_hasWeaponEquipped = true;
 		}
+	}
+	
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+		if (other.gameObject.CompareTag("Lethal"))
+		{
+			Destroy(gameObject);
+		}
+			
 	}
 	
 }

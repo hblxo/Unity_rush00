@@ -6,6 +6,12 @@ public class Enemy : MonoBehaviour {
 	
 	public float Speed = 1f;
 	private Vector3 _playerPos;
+	private GameObject _weaponObj;
+	private Weapon _weapon;
+	public GameObject StartingWeapon;
+	public GameObject DefaultWeapon;
+	private bool _hasWeaponEquipped;
+	private Rigidbody2D _body;
 	private Animator _animator;
 	private Vector3 _target;
 	private bool _isMoving;
@@ -19,6 +25,22 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
+		if (StartingWeapon)
+		{
+			_weaponObj = Instantiate(StartingWeapon, transform.position + new Vector3(-0.2f, -0.2f, 0f),
+				transform.rotation, transform);
+			_weapon = _weaponObj.GetComponent<Weapon>();
+			if (_weapon.GetComponent<SpriteRenderer>())
+				_weaponObj.GetComponent<SpriteRenderer>().sprite = _weapon.ViewModel;
+			_weapon.IsEquipped = true;
+			if (_weapon.GetComponent<Rigidbody2D>())
+				_weapon.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+			if (GetComponent<Rigidbody2D>())
+				_body = GetComponent<Rigidbody2D>();
+			if (_weaponObj != DefaultWeapon)
+				_hasWeaponEquipped = true;
+		}
+
 		Head.GetComponent<SpriteRenderer>().sprite = HeadSprites[Random.Range(0, HeadSprites.Length)];
 		Body.GetComponent<SpriteRenderer>().sprite = BodySprites[Random.Range(0, BodySprites.Length)];
 		_animator = GetComponentInChildren<Animator>();
@@ -43,13 +65,40 @@ public class Enemy : MonoBehaviour {
 
 	private void OnTriggerStay2D(Collider2D charac)
 	{
-		if (!charac.gameObject.CompareTag("Player")) return;
-		var hit = Physics2D.Linecast(transform.position, charac.transform.position, Mask);
-		Debug.DrawRay(transform.position,
-			hit.point - (Vector2)transform.position, Color.yellow);
-		if (hit.rigidbody.gameObject.CompareTag("Player"))
+		if (charac.gameObject.CompareTag("Player"))
 		{
-			Move(charac.gameObject);
+			var hit = Physics2D.Linecast(transform.position, charac.transform.position, Mask);
+			Debug.DrawRay(transform.position,
+				hit.point - (Vector2) transform.position, Color.yellow);
+			if (hit.rigidbody.gameObject.CompareTag("Player"))
+			{
+				Move(charac.gameObject);
+				_weapon.Shoot();
+				if (_weapon.Ammo == 0)
+				{
+					_hasWeaponEquipped = false;
+					_weapon.Drop();
+				}
+			}
+		}
+		else if (charac.gameObject.CompareTag("Weapon") && !_hasWeaponEquipped)
+		{
+			Debug.Log(charac.gameObject);
+			if (charac.GetComponentInParent<Weapon>().IsEquipped == false)
+			{
+				Move(charac.gameObject);
+				if (Vector3.Distance(transform.position, charac.transform.position) < 0.2f)
+				{
+					var wep = charac.gameObject.transform.parent;
+					//wep.gameObject.transform.parent = transform;
+					_weaponObj = wep.gameObject;
+					charac.GetComponentInParent<Weapon>().Equip(gameObject);
+					//wep.gameObject.transform.parent = transform;
+					_weapon = _weaponObj.GetComponent<Weapon>();
+					_weapon.Equip(gameObject);
+					_hasWeaponEquipped = true;
+				}
+			}
 		}
 	}
 
@@ -76,5 +125,11 @@ public class Enemy : MonoBehaviour {
 		angle += 90;
 		transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 		_isMoving = true;
+	}
+
+	private void OnDestroy()
+	{
+		if(_weapon)
+			_weapon.Drop();
 	}
 }
