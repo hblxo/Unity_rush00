@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
 //		PlayerAmmo = 0;
 		_weapon = Player.GetComponent<PlayerScript>()._weapon;
 		PlayerAmmo = _weapon ? _weapon.Ammo : 0;
-		Debug.Log("AMMO :" + PlayerAmmo);
 	}
 	
 	// Update is called once per frame

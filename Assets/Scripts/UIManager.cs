@@ -50,7 +50,6 @@ public class UIManager : MonoBehaviour
 	
 	public void Reload(){
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-//		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	//controls the pausing of the scene

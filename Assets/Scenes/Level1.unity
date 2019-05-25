@@ -515,7 +515,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 739709911}
         m_MethodName: Reload
         m_Mode: 1
         m_Arguments:
@@ -720,7 +720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 739709911}
         m_MethodName: PauseControl
         m_Mode: 1
         m_Arguments:
@@ -931,6 +931,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2fda8979582054aee9dea9cc0ca5db01, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &739709911 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114471986837860096, guid: 6dffc01cbbf8b48e5bc2d20cb5bb73a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1576977471}
+  m_Script: {fileID: 11500000, guid: d13719a5218704aab804f764291b6a32, type: 3}
 --- !u!1 &980345901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,7 +1189,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 739709911}
         m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
