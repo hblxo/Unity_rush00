@@ -8,6 +8,7 @@ TagManager:
   - Block
   - Enemy
   - Lethal
+  - ShowOnPause
   layers:
   - Default
   - TransparentFX
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Bullets
     uniqueID: 1277182617
+    locked: 0
+  - name: UI
+    uniqueID: 68833829
     locked: 0

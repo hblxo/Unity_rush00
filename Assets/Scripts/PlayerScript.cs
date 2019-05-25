@@ -110,7 +110,8 @@ public class PlayerScript : MonoBehaviour, IKillable
 
 	public void Damage()
 	{
-		Destroy(gameObject);
+		GameManager.Gm.IsDead = true;
+//		Destroy(gameObject);
 	}
 	
 }
