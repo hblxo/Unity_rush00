@@ -22,10 +22,13 @@ public class EnemyScript : MonoBehaviour, IKillable {
 	public GameObject Legs;
 	public Sprite[] HeadSprites;
 	public Sprite[] BodySprites;
-	
+	public Transform[] pos;
+	private int length;
+
 	// Use this for initialization
 	void Start ()
 	{
+		length = 0;
 		if (StartingWeapon)
 		{
 			_weaponObj = Instantiate(StartingWeapon, transform.position + new Vector3(-0.2f, -0.2f, 0f),
@@ -45,7 +48,11 @@ public class EnemyScript : MonoBehaviour, IKillable {
 		Head.GetComponent<SpriteRenderer>().sprite = HeadSprites[Random.Range(0, HeadSprites.Length)];
 		Body.GetComponent<SpriteRenderer>().sprite = BodySprites[Random.Range(0, BodySprites.Length)];
 		_animator = GetComponentInChildren<Animator>();
-		_playerPos = transform.position;
+		if (pos.Length == 0)
+			_playerPos = transform.position;
+		else
+			_playerPos = pos[length].position;
+		length = 0;
 	}
 	
 	// Update is called once per frame
@@ -59,8 +66,16 @@ public class EnemyScript : MonoBehaviour, IKillable {
 
 		if (transform.position == _playerPos)
 		{
-			_isMoving = false;
-			_animator.SetBool("walk", false);
+			if (pos.Length == 0)
+			{
+				_isMoving = false;
+				_animator.SetBool("walk", false);
+			}
+			else
+			{
+				length = (length + 1) % pos.Length;
+				_playerPos = pos[length].position;
+			}
 		}
 	}
 
