@@ -37,12 +37,11 @@ public class Bullet : MonoBehaviour
 		{
 			if (other.gameObject.GetComponent<IKillable>() != null)
 			{
-				other.gameObject.GetComponent<IKillable>().Damage();
+				if (!(Enemy && other.gameObject.CompareTag("Enemy")))
+					other.gameObject.GetComponent<IKillable>().Damage();
 			}
-
 			Destroy(gameObject);
 		}
 		Debug.Log(other.gameObject);
-
 	}
 }

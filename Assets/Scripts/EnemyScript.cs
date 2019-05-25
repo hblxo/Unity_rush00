@@ -24,6 +24,10 @@ public class EnemyScript : MonoBehaviour, IKillable {
 	public GameObject Legs;
 	public Sprite[] HeadSprites;
 	public Sprite[] BodySprites;
+	private float _soundBuffer;
+
+	public AudioSource _source;
+	public AudioClip[] DeathSounds;
 	
 	// Use this for initialization
 	void Start ()
@@ -48,6 +52,7 @@ public class EnemyScript : MonoBehaviour, IKillable {
 		Body.GetComponent<SpriteRenderer>().sprite = BodySprites[Random.Range(0, BodySprites.Length)];
 		_animator = GetComponentInChildren<Animator>();
 		_playerPos = transform.position;
+		_source = GameObject.Find("AudioManager").GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -133,6 +138,9 @@ public class EnemyScript : MonoBehaviour, IKillable {
 
 	public void Damage()
 	{
+		if (Time.time != _soundBuffer)
+			_source.PlayOneShot(DeathSounds[Random.Range(0, DeathSounds.Length)]);
+		_soundBuffer = Time.time;
 		if(_weapon)
 			_weapon.Drop();
 		Destroy(gameObject);

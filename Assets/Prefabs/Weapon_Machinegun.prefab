@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 50176105860910610}
   - component: {fileID: 61174109176545842}
   m_Layer: 12
-  m_Name: Weapon_Magnum
+  m_Name: Weapon_Machinegun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.78125, y: 0.5}
+    oldSize: {x: 0.90625, y: 0.5625}
     newSize: {x: 0.875, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -236,20 +236,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Projectile: {fileID: 1484307267052292, guid: 8765e16ce03594a8eb8c95177475608d, type: 2}
-  FireRate: 0.4
+  FireRate: 0.1
   Range: 0
-  BulletSpeed: 20
+  BulletSpeed: 16
   Force: 12
-  Ammo: 6
+  Ammo: 32
   NextShot: 0
-  ViewModel: {fileID: 21300000, guid: 998863868c48d4acb8825638c9fe303c, type: 3}
-  WorldModel: {fileID: 21300000, guid: b3a7603c6d0094fde9abd4be77961bde, type: 3}
-  ShotSound: {fileID: 8300000, guid: 1a0a9d8d1694944c1a195730836eb819, type: 3}
+  ViewModel: {fileID: 21300000, guid: a315ebc2f13264de1ad811d9026e0221, type: 3}
+  WorldModel: {fileID: 21300000, guid: afebc235a4c8e420d8a46351da0a4b3f, type: 3}
+  ShotSound: {fileID: 8300000, guid: d27266dbeb98e4717a95f991054745c7, type: 3}
   NoAmmoSound: {fileID: 8300000, guid: d63d69bae90b8425b9448e75e1f0cd64, type: 3}
   EquipSound: {fileID: 8300000, guid: bd5112458d23d48faa52fe82499275ed, type: 3}
-  Spread: 0.01
+  Spread: 0.1
   IsEquipped: 0
   NumberOfShots: 1
+  _source: {fileID: 0}
   Target: {x: 0, y: 0, z: 0}
   Direction: {x: 0, y: 0, z: 0}
 --- !u!212 &212710890711645108
@@ -286,7 +287,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b3a7603c6d0094fde9abd4be77961bde, type: 3}
+  m_Sprite: {fileID: 21300000, guid: afebc235a4c8e420d8a46351da0a4b3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

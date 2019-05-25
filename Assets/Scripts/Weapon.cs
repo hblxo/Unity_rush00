@@ -20,11 +20,12 @@ public class Weapon : MonoBehaviour
 	public Sprite WorldModel;
 	public AudioClip ShotSound;
 	public AudioClip NoAmmoSound;
+	public AudioClip EquipSound;
 	public float Spread;
 	public bool IsEquipped = false;
 	public int NumberOfShots = 1;
 	private Rigidbody2D _body;
-	private AudioSource _source;
+	[HideInInspector]public AudioSource _source;
 	[FormerlySerializedAs("_target")] public Vector3 Target;
 	[FormerlySerializedAs("_direction")] public Vector3 Direction;
 	
@@ -66,8 +67,14 @@ public class Weapon : MonoBehaviour
 	public virtual void Shoot()
 	{
 		if (!IsEquipped) return;
-		if (Time.time > NextShot && Ammo > 0)
+		if (Time.time > NextShot)
 		{
+			if (Ammo == 0)
+			{
+				_source.PlayOneShot(NoAmmoSound);
+				NextShot = Time.time + FireRate;
+				return;
+			}
 			_source.PlayOneShot(ShotSound);
 			for (int i = 0; i < NumberOfShots; i++)
 			{
@@ -80,14 +87,14 @@ public class Weapon : MonoBehaviour
 				Bullet blt = clone.GetComponent<Bullet>();
 				blt.Speed = BulletSpeed;
 				blt.Direction = direction;
+				if (transform.parent.CompareTag("Enemy"))
+					blt.Enemy = true;
 			}
 			NextShot = Time.time + FireRate;
-			Ammo--;
+			if (!(transform.parent.CompareTag("Enemy")))
+				Ammo--;
 		}
-		else if (Ammo == 0)
-		{
-			_source.PlayOneShot(NoAmmoSound);
-		}
+		
 	}
 
 	public virtual void Equip(GameObject parent)
@@ -104,6 +111,7 @@ public class Weapon : MonoBehaviour
 		gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
 		_body.velocity = new Vector2(0, 0);
 		_body.bodyType = RigidbodyType2D.Kinematic;
+		_source.PlayOneShot(EquipSound);
 	}
 	
 	public void Drop()

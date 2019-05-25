@@ -35,13 +35,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4972587384705120}
-  - component: {fileID: 82073247576901140}
+  - component: {fileID: 82476169970818578}
+  - component: {fileID: 114865790645113522}
   - component: {fileID: 212710890711645108}
-  - component: {fileID: 114727920967555166}
   - component: {fileID: 50176105860910610}
   - component: {fileID: 61174109176545842}
   m_Layer: 12
-  m_Name: Weapon_Magnum
+  m_Name: Weapon_Katana
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.78125, y: 0.5}
+    oldSize: {x: 1.125, y: 0.40625}
     newSize: {x: 0.875, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -144,7 +144,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.58484554}
   m_EdgeRadius: 0
---- !u!82 &82073247576901140
+--- !u!82 &82476169970818578
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -154,7 +154,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -224,7 +224,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114727920967555166
+--- !u!114 &114865790645113522
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -232,24 +232,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1596120291452772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcb3a8382733447528040624329c3d37, type: 3}
+  m_Script: {fileID: 11500000, guid: d49dc5bf39ab44ebca2f7b4a8bf3f4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Projectile: {fileID: 1484307267052292, guid: 8765e16ce03594a8eb8c95177475608d, type: 2}
-  FireRate: 0.4
+  Projectile: {fileID: 1319725376966974, guid: 94655a04b11bb4dd5a24cf4f4519b921, type: 2}
+  FireRate: 1
   Range: 0
-  BulletSpeed: 20
-  Force: 12
-  Ammo: 6
+  BulletSpeed: 0
+  Force: 10
+  Ammo: 0
   NextShot: 0
-  ViewModel: {fileID: 21300000, guid: 998863868c48d4acb8825638c9fe303c, type: 3}
-  WorldModel: {fileID: 21300000, guid: b3a7603c6d0094fde9abd4be77961bde, type: 3}
-  ShotSound: {fileID: 8300000, guid: 1a0a9d8d1694944c1a195730836eb819, type: 3}
-  NoAmmoSound: {fileID: 8300000, guid: d63d69bae90b8425b9448e75e1f0cd64, type: 3}
-  EquipSound: {fileID: 8300000, guid: bd5112458d23d48faa52fe82499275ed, type: 3}
-  Spread: 0.01
+  ViewModel: {fileID: 21300000, guid: 6a80894c63238427280b822e403bcc63, type: 3}
+  WorldModel: {fileID: 21300000, guid: f47402979bf234b2d8a7c4f680d637d0, type: 3}
+  ShotSound: {fileID: 8300000, guid: 48d68d12751aa44cb87bfa4f2ca98bb6, type: 3}
+  NoAmmoSound: {fileID: 8300000, guid: 48d68d12751aa44cb87bfa4f2ca98bb6, type: 3}
+  EquipSound: {fileID: 8300000, guid: 48d68d12751aa44cb87bfa4f2ca98bb6, type: 3}
+  Spread: 0.1
   IsEquipped: 0
   NumberOfShots: 1
+  _source: {fileID: 0}
   Target: {x: 0, y: 0, z: 0}
   Direction: {x: 0, y: 0, z: 0}
 --- !u!212 &212710890711645108
@@ -286,7 +287,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b3a7603c6d0094fde9abd4be77961bde, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f47402979bf234b2d8a7c4f680d637d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
