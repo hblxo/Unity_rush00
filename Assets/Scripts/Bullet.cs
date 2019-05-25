@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -32,8 +33,13 @@ public class Bullet : MonoBehaviour
 
 	public void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Block"))
+		if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Block") || other.gameObject.CompareTag("Player"))
 		{
+			if (other.gameObject.GetComponent<IKillable>() != null)
+			{
+				other.gameObject.GetComponent<IKillable>().Damage();
+			}
+
 			Destroy(gameObject);
 		}
 		Debug.Log(other.gameObject);

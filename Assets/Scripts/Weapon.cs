@@ -61,6 +61,7 @@ public class Weapon : MonoBehaviour
 	
 	public virtual void Shoot()
 	{
+		if (!IsEquipped) return;
 		if (Time.time > NextShot && Ammo > 0)
 		{
 			for (int i = 0; i < NumberOfShots; i++)
@@ -79,8 +80,10 @@ public class Weapon : MonoBehaviour
 		}
 	}
 
-	public virtual void Equip()
+	public virtual void Equip(GameObject parent)
 	{
+		if (IsEquipped) return;
+		gameObject.transform.parent = parent.transform;
 		Quaternion save = transform.parent.rotation;
 		gameObject.GetComponent<SpriteRenderer>().sprite = ViewModel;
 		transform.parent.rotation = new Quaternion(0,0,0,0); // very degueulasse but i'm nul en maths so foutez moi la paix
@@ -93,8 +96,10 @@ public class Weapon : MonoBehaviour
 		_body.bodyType = RigidbodyType2D.Kinematic;
 	}
 	
-	public void Drop(Vector3 target)
+	public void Drop()
 	{
+		if (!IsEquipped) return;
+		var target = -transform.up;
 		gameObject.transform.parent = null;
 		gameObject.GetComponent<SpriteRenderer>().sprite = WorldModel;
 		target.z = 0;
@@ -106,5 +111,5 @@ public class Weapon : MonoBehaviour
 		_body.bodyType = RigidbodyType2D.Dynamic;
 		_body.velocity = -gameObject.transform.up * Force;
 		_body.AddTorque(Random.Range(-180f, 180f));
-	}
+	}	
 }

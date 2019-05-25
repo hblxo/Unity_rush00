@@ -8,6 +8,7 @@ TagManager:
   - Block
   - Enemy
   - Lethal
+  - ShowOnPause
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Enemies
   - Objects
   - Interactable
-  - 
+  - BG
   - 
   - 
   - 
@@ -42,11 +43,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Bg
     uniqueID: 1205299589
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Objects
     uniqueID: 2529799419
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Bullets
     uniqueID: 1277182617
+    locked: 0
+  - name: UI
+    uniqueID: 68833829
     locked: 0

@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 {
 	public GameManager Gm;
 	public Text Ammo;
+	
+
 	GameObject[] _pauseObjects;
 
 //	public Canvas GameOverTitle;

@@ -19,7 +19,6 @@ public class Unarmed : Weapon {
 
 		if (Time.time > NextShot)
 		{
-			Debug.Log("Fists !");
 			var direction = -transform.up;
 			direction.z = 0f;
 			direction.x += Random.Range(-Spread, Spread);
@@ -33,7 +32,7 @@ public class Unarmed : Weapon {
 		}
 	}
 
-	public override void Equip()
+	public override void Equip(GameObject parent)
 	{
 		Quaternion save = transform.parent.rotation;
 		transform.parent.rotation = new Quaternion(0,0,0,0); // very degueulasse but i'm nul en maths so foutez moi la paix
