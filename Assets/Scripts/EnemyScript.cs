@@ -81,7 +81,7 @@ public class EnemyScript : MonoBehaviour, IKillable {
 			if (hit.rigidbody.gameObject.CompareTag("Player"))
 			{
 				Move(charac.gameObject);
-				if (Vector3.Distance(gameObject.transform.position, charac.transform.position) < 2)
+				if (Vector3.Distance(gameObject.transform.position, charac.transform.position) < _weapon.Range)
 				{
 					_weapon.Shoot();
 					if (_weapon.Ammo == 0)

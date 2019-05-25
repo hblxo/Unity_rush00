@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Projectile: {fileID: 1484307267052292, guid: 8765e16ce03594a8eb8c95177475608d, type: 2}
   FireRate: 0.7
-  Range: 0
+  Range: 3
   BulletSpeed: 10
   Force: 7
   Ammo: 6
@@ -250,6 +250,7 @@ MonoBehaviour:
   Spread: 0.15
   IsEquipped: 0
   NumberOfShots: 6
+  _source: {fileID: 0}
   Target: {x: 0, y: 0, z: 0}
   Direction: {x: 0, y: 0, z: 0}
 --- !u!212 &212710890711645108

@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Projectile: {fileID: 1484307267052292, guid: 8765e16ce03594a8eb8c95177475608d, type: 2}
   FireRate: 0.1
-  Range: 0
+  Range: 3
   BulletSpeed: 16
   Force: 12
   Ammo: 32

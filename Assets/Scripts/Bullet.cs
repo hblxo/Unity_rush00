@@ -42,6 +42,5 @@ public class Bullet : MonoBehaviour
 			}
 			Destroy(gameObject);
 		}
-		Debug.Log(other.gameObject);
 	}
 }
