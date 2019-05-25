@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : MonoBehaviour, IKillable
 {
 	private float _speed = 5f;
 	private GameObject _weaponObj;
@@ -98,13 +99,18 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 	
-	private void OnCollisionEnter2D(Collision2D other)
+	/*private void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Lethal"))
 		{
 			Destroy(gameObject);
 		}
 			
+	}*/
+
+	public void Damage()
+	{
+		Destroy(gameObject);
 	}
 	
 }

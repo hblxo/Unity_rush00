@@ -19,7 +19,6 @@ public class Unarmed : Weapon {
 
 		if (Time.time > NextShot)
 		{
-			Debug.Log("Fists !");
 			var direction = -transform.up;
 			direction.z = 0f;
 			direction.x += Random.Range(-Spread, Spread);

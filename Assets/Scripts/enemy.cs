@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour, IKillable {
 	
 	public float Speed = 1f;
 	private Vector3 _playerPos;
@@ -73,18 +74,21 @@ public class Enemy : MonoBehaviour {
 			if (hit.rigidbody.gameObject.CompareTag("Player"))
 			{
 				Move(charac.gameObject);
-				_weapon.Shoot();
-				if (_weapon.Ammo == 0)
+				if (Vector3.Distance(gameObject.transform.position, charac.transform.position) < 2)
 				{
-					_hasWeaponEquipped = false;
-					_weapon.Drop();
+					_weapon.Shoot();
+					if (_weapon.Ammo == 0)
+					{
+						_hasWeaponEquipped = false;
+						_weapon.Drop();
+					}
 				}
 			}
 		}
 		else if (charac.gameObject.CompareTag("Weapon") && !_hasWeaponEquipped)
 		{
 			Debug.Log(charac.gameObject);
-			if (charac.GetComponentInParent<Weapon>().IsEquipped == false)
+			if (charac.GetComponentInParent<Weapon>().IsEquipped == false && charac.GetComponentInParent<Weapon>().Ammo > 0)
 			{
 				Move(charac.gameObject);
 				if (Vector3.Distance(transform.position, charac.transform.position) < 0.2f)
@@ -102,15 +106,22 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	private void OnCollisionEnter2D(Collision2D other)
+	/*private void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Lethal"))
 		{
 			Destroy(gameObject);
 		}
 			
-	}
+	}*/
 
+	public void Damage()
+	{
+		if(_weapon)
+			_weapon.Drop();
+		Destroy(gameObject);
+	}
+	
 	public void Move(GameObject player)
 	{
 		_playerPos = player.transform.position;
@@ -129,7 +140,6 @@ public class Enemy : MonoBehaviour {
 
 	private void OnDestroy()
 	{
-		if(_weapon)
-			_weapon.Drop();
+
 	}
 }
