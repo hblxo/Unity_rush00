@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-//		PlayerAmmo = 0;
 		_enemies = GameObject.FindGameObjectsWithTag("Enemy");
 		_weapon = Player.GetComponent<PlayerScript>()._weapon;
 		PlayerAmmo = _weapon ? _weapon.Ammo : 0;
@@ -33,10 +32,6 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-//		if (IsDead)
-//			GameOver();
-//		if (_enemies.Length == 0)
-//			Victory();
 		UpdateAmmo();
 	}	
 
@@ -45,20 +40,4 @@ public class GameManager : MonoBehaviour
 		_weapon = Player.GetComponent<PlayerScript>()._weapon;
 		PlayerAmmo = _weapon ? _weapon.Ammo : 0;
 	}
-//
-//	public void Victory()
-//	{
-//		Time.timeScale = 0;
-//		if (Input.GetKeyDown("r"))
-//			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-//	}
-//
-//	public void GameOver()
-//	{
-//		IsDead = true;
-//		Time.timeScale = 0;
-//
-//		if (Input.GetKeyDown("r"))
-//			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-//	}
 }
