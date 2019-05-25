@@ -73,6 +73,7 @@ public class Weapon : MonoBehaviour
 				direction = direction.normalized;
 				var clone = Instantiate(Projectile, transform.position + direction * 0.4f, transform.rotation);
 				Bullet blt = clone.GetComponent<Bullet>();
+				blt.Speed = BulletSpeed;
 				blt.Direction = direction;
 			}
 			NextShot = Time.time + FireRate;

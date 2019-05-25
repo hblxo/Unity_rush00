@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour, IKillable {
 	
@@ -105,6 +107,26 @@ public class EnemyScript : MonoBehaviour, IKillable {
 			}
 		}
 	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		Weapon wep;
+		try
+		{
+			wep = other.gameObject.transform.parent.GetComponent<Weapon>();
+		}
+		catch (Exception)
+		{
+			return;
+		}
+		if (wep.IsEquipped) return;
+		if (Mathf.Abs(other.transform.parent.GetComponent<Rigidbody2D>().velocity.x) >= 0.2f
+		    || Mathf.Abs(other.transform.parent.GetComponent<Rigidbody2D>().velocity.y) >= 0.2f)
+		{
+			Damage();
+		}
+	}
+
 
 	/*private void OnCollisionEnter2D(Collision2D other)
 	{
