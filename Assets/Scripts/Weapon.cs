@@ -39,16 +39,10 @@ public class Weapon : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	public virtual void Update () 
+	public virtual void Update ()
 	{
-//		if (!this.IsEquipped && this.Target != transform.position && Target.x != 0f && Target.y != 0f)
-//		{
-//			transform.Rotate (Vector3.forward * -25);
-//		}
-		//while (Mathf.Abs(_body.velocity.x) > 0.01f || Mathf.Abs(_body.velocity.y) > 0.01f)
-		//{
-//			transform.Rotate (Vector3.forward * -25);
-		//}
+		if (IsEquipped)
+			_body.transform.rotation = transform.parent.rotation;
 	}
 
 	public virtual void FixedUpdate () 

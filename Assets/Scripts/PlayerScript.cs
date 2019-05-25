@@ -40,6 +40,8 @@ public class PlayerScript : MonoBehaviour, IKillable
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Time.timeScale == 0)
+			return;
 		_horizontal = Input.GetAxisRaw("Horizontal");
 		_vertical = Input.GetAxisRaw("Vertical");
 		if (_horizontal != 0|| _vertical != 0)
