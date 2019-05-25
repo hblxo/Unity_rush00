@@ -18,10 +18,13 @@ public class Weapon : MonoBehaviour
 	public float NextShot;
 	public Sprite ViewModel;
 	public Sprite WorldModel;
+	public AudioClip ShotSound;
+	public AudioClip NoAmmoSound;
 	public float Spread;
 	public bool IsEquipped = false;
 	public int NumberOfShots = 1;
 	private Rigidbody2D _body;
+	private AudioSource _source;
 	[FormerlySerializedAs("_target")] public Vector3 Target;
 	[FormerlySerializedAs("_direction")] public Vector3 Direction;
 	
@@ -29,7 +32,8 @@ public class Weapon : MonoBehaviour
 	public void Start ()
 	{
 		_body = GetComponent<Rigidbody2D>();
-
+		_source = GetComponent<AudioSource>();
+		
 		NextShot = 0f;
 	}
 	
@@ -64,6 +68,7 @@ public class Weapon : MonoBehaviour
 		if (!IsEquipped) return;
 		if (Time.time > NextShot && Ammo > 0)
 		{
+			_source.PlayOneShot(ShotSound);
 			for (int i = 0; i < NumberOfShots; i++)
 			{
 				var direction = -transform.up;
@@ -78,6 +83,10 @@ public class Weapon : MonoBehaviour
 			}
 			NextShot = Time.time + FireRate;
 			Ammo--;
+		}
+		else if (Ammo == 0)
+		{
+			_source.PlayOneShot(NoAmmoSound);
 		}
 	}
 

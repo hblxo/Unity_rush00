@@ -110,21 +110,15 @@ public class EnemyScript : MonoBehaviour, IKillable {
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		Weapon wep;
-		try
-		{
-			wep = other.gameObject.transform.parent.GetComponent<Weapon>();
-		}
-		catch (Exception)
-		{
-			return;
-		}
+		/*Weapon wep = other.gameObject.transform.parent.GetComponent<Weapon>();
+		if (!wep) return;
 		if (wep.IsEquipped) return;
 		if (Mathf.Abs(other.transform.parent.GetComponent<Rigidbody2D>().velocity.x) >= 0.2f
 		    || Mathf.Abs(other.transform.parent.GetComponent<Rigidbody2D>().velocity.y) >= 0.2f)
 		{
+			Debug.Log(other.gameObject);
 			Damage();
-		}
+		}*/
 	}
 
 
