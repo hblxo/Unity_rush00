@@ -34,7 +34,6 @@ public class UIManager : MonoBehaviour
 				Time.timeScale = 0;
 				ShowPaused();
 			} else if (Time.timeScale == 0){
-				Debug.Log ("high");
 				Time.timeScale = 1;
 				HidePaused();
 			}
