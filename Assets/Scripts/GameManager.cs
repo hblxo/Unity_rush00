@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 	void Start ()
 	{
 //		PlayerAmmo = 0;
-		_weapon = Player.GetComponentInChildren<Weapon>();
+		_weapon = Player.GetComponent<PlayerScript>()._weapon;
 		PlayerAmmo = _weapon ? _weapon.Ammo : 0;
 	}
 	
@@ -34,11 +34,11 @@ public class GameManager : MonoBehaviour
 		if (Gm.IsDead)
 			GameOver();
 		UpdateAmmo();
-	}
+	}	
 
 	private void UpdateAmmo()
 	{
-		_weapon = Player.GetComponentInChildren<Weapon>();
+		_weapon = Player.GetComponent<PlayerScript>()._weapon;
 		PlayerAmmo = _weapon ? _weapon.Ammo : 0;
 	}
 

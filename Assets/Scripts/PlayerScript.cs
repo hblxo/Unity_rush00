@@ -7,7 +7,7 @@ public class PlayerScript : MonoBehaviour, IKillable
 {
 	private float _speed = 5f;
 	private GameObject _weaponObj;
-	private Weapon _weapon;
+	public Weapon _weapon;
 	private Animator _animator;
 	public GameObject StartingWeapon;
 	public GameObject DefaultWeapon;
