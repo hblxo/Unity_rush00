@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
 	{
 		if (Gm.IsDead || !AreStillEnemiesAlive())
 			ShowEndPanel();
-		if(Input.GetKeyDown(KeyCode.Escape))
+		else if(Input.GetKeyDown(KeyCode.Escape))
 		{
 			if(Time.timeScale == 1)
 			{
@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
 				HidePaused();
 			}
 		}
+		
 		SetProperties();
 	}
 
