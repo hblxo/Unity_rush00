@@ -8,16 +8,14 @@ public class UIManager : MonoBehaviour
 {
 	public GameManager Gm;
 	public Text Ammo;
-	
+	public Text EndingText;
 
+	public GameObject EndingPanel;
 	GameObject[] _pauseObjects;
 
-//	public Canvas GameOverTitle;
 	
 	// Use this for initialization
 	void Start () {
-//		GameOverTitle.GetComponent<Canvas>();
-//		GameOverTitle.enabled = false;
 		SetProperties();
 		Time.timeScale = 1;
 		_pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
@@ -25,9 +23,10 @@ public class UIManager : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
-//		if (Gm.IsDead)
-//			GameOverTitle.enabled = true;
+	void Update ()
+	{
+		if (Gm.IsDead || !AreStillEnemiesAlive())
+			ShowEndPanel();
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
 			if(Time.timeScale == 1)
@@ -42,6 +41,16 @@ public class UIManager : MonoBehaviour
 		}
 		SetProperties();
 	}
+
+	private bool AreStillEnemiesAlive()
+	{
+		foreach (var enemy in Gm._enemies)
+		{
+			if (enemy)
+				return (true);
+		}
+		return (false);
+	}
 	
 	public void SetProperties()
 	{
@@ -52,7 +61,6 @@ public class UIManager : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
-	//controls the pausing of the scene
 	public void PauseControl(){
 		if(Time.timeScale == 1)
 		{
@@ -64,26 +72,29 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
-	//shows objects with ShowOnPause tag
 	public void ShowPaused(){
 		foreach(GameObject g in _pauseObjects){
 			g.SetActive(true);
 		}
 	}
 
-	//hides objects with ShowOnPause tag
 	public void HidePaused(){
 		foreach(GameObject g in _pauseObjects){
 			g.SetActive(false);
 		}
 	}
 
+	public void ShowEndPanel()
+	{
+		EndingText.text = Gm.IsDead ? "You Lose !" : "Roxxxor";
+		Time.timeScale = 0;
+		if (Input.GetKeyDown("r"))
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		EndingPanel.SetActive(true);
+	}
+	
 	public void Exit()
 	{
 		Application.Quit();
 	}
-//	//loads inputted level
-//	public void LoadLevel(string level){
-//		Application.LoadLevel(level);
-//	}
 }
