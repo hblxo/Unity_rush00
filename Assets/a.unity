@@ -899,15 +899,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4972587384705120, guid: 19df6efaf924943adac1c639c83d66a6, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4972587384705120, guid: 19df6efaf924943adac1c639c83d66a6, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4972587384705120, guid: 19df6efaf924943adac1c639c83d66a6, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4972587384705120, guid: 19df6efaf924943adac1c639c83d66a6, type: 2}
       propertyPath: m_LocalRotation.w
