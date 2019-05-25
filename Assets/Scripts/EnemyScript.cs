@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IKillable {
+public class EnemyScript : MonoBehaviour, IKillable {
 	
 	public float Speed = 1f;
 	private Vector3 _playerPos;
