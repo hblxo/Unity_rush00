@@ -9,11 +9,12 @@ public class UIManager : MonoBehaviour
 	public GameManager Gm;
 	public Text Ammo;
 	public Text EndingText;
+	public Text TimerText;
+	private Time _timer;
 
 	public GameObject EndingPanel;
 	GameObject[] _pauseObjects;
 
-	
 	// Use this for initialization
 	void Start () {
 		SetProperties();
@@ -88,6 +89,7 @@ public class UIManager : MonoBehaviour
 	{
 		EndingText.text = Gm.IsDead ? "You Lose !" : "Roxxxor";
 		Time.timeScale = 0;
+		TimerText.text = Time.time.ToString();
 		if (Input.GetKeyDown("r"))
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		EndingPanel.SetActive(true);

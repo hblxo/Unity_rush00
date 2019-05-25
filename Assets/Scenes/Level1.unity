@@ -245,6 +245,14 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 739709911}
+    - target: {fileID: 1654924237073422, guid: c65353086b0ff418681b06279238eba9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471765534311518, guid: c65353086b0ff418681b06279238eba9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c65353086b0ff418681b06279238eba9, type: 2}
   m_IsPrefabParent: 0
@@ -426,6 +434,84 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1576977471}
   m_Script: {fileID: 11500000, guid: d13719a5218704aab804f764291b6a32, type: 3}
+--- !u!1 &967671159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1225848170211018, guid: c65353086b0ff418681b06279238eba9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 967671160}
+  - component: {fileID: 967671162}
+  - component: {fileID: 967671161}
+  m_Layer: 5
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &967671160
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 224793127288646198, guid: c65353086b0ff418681b06279238eba9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967671159}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6620799, y: 0.6620799, z: 0.6620799}
+  m_Children: []
+  m_Father: {fileID: 1064225057}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3.7, y: 56.6}
+  m_SizeDelta: {x: 437.1, y: 55.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &967671161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114668562131681666, guid: c65353086b0ff418681b06279238eba9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967671159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9338235, g: 0.034331724, b: 0.7229082, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 5d294537ca0e4411ea281cb1d1a1b14f, type: 3}
+    m_FontSize: 55
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 5
+    m_MaxSize: 72
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &967671162
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222998277421714222, guid: c65353086b0ff418681b06279238eba9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967671159}
 --- !u!114 &980345903 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114296559853952772, guid: c65353086b0ff418681b06279238eba9,
@@ -541,6 +627,11 @@ Tilemap:
 --- !u!1 &1064225056 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1471765534311518, guid: c65353086b0ff418681b06279238eba9,
+    type: 2}
+  m_PrefabInternal: {fileID: 375412536}
+--- !u!224 &1064225057 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224358002925809190, guid: c65353086b0ff418681b06279238eba9,
     type: 2}
   m_PrefabInternal: {fileID: 375412536}
 --- !u!1 &1096619723
@@ -713,6 +804,11 @@ Prefab:
       propertyPath: EndingPanel
       value: 
       objectReference: {fileID: 1064225056}
+    - target: {fileID: 114471986837860096, guid: 6dffc01cbbf8b48e5bc2d20cb5bb73a0,
+        type: 2}
+      propertyPath: TimerText
+      value: 
+      objectReference: {fileID: 967671161}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6dffc01cbbf8b48e5bc2d20cb5bb73a0, type: 2}
   m_IsPrefabParent: 0
