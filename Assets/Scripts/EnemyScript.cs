@@ -88,9 +88,9 @@ public class EnemyScript : MonoBehaviour, IKillable {
 		if (transform.position == _playerPos)
 		{
 			_isMoving = false;
-			if (!nextCheckpoint)
+			//if (!nextCheckpoint)
 				_animator.SetBool("walk", false);
-			hasTarget = false;
+			//hasTarget = false;
 			
 		}
 	}

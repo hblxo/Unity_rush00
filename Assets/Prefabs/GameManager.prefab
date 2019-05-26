@@ -51,6 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646cd174e802941aaa15e87682e207e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerAmmo: 10
+  PlayerAmmo: 5
+  _enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Player: {fileID: 0}
   IsDead: 0
+  Win: 0
