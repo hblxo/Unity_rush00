@@ -98,8 +98,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1250593169493374}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.95, y: 0.03, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5, y: 21.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4100695215509466}
@@ -193,15 +193,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -2.4630017, y: -0.28553864}
-      - {x: -2.4407666, y: -1.5775573}
-      - {x: -2.014996, y: -2.5904891}
-      - {x: -0.12200683, y: -3.2957842}
-      - {x: 1.6367621, y: -2.7704844}
-      - {x: 2.2703433, y: -1.546581}
-      - {x: 2.3199143, y: -0.3317541}
-      - {x: 0.5539235, y: 0.8460011}
-      - {x: -0.51889485, y: 0.86351615}
+    - - {x: -1.3150797, y: -0.9900764}
+      - {x: -2.8708673, y: -3.4050126}
+      - {x: -2.2878227, y: -5.163111}
+      - {x: -0.014505863, y: -5.524201}
+      - {x: 2.0944247, y: -5.2633195}
+      - {x: 2.8290782, y: -3.689074}
+      - {x: 1.4865026, y: -1.3233799}
+      - {x: 0.010038376, y: 0.55398333}
 --- !u!95 &95390323601460304
 Animator:
   serializedVersion: 3
@@ -230,11 +229,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a42f355c11f46c78ae6e39f2c29b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextCheckpoint: {fileID: 0}
   Speed: 1
   StartingWeapon: {fileID: 1596120291452772, guid: f3a952547f6c742e6bdaf5705ba4483e,
     type: 2}
   DefaultWeapon: {fileID: 1178407156727138, guid: a0ea9d200d9f844d998acb4809cc7f6a,
     type: 2}
+  _target: {x: 0, y: 0, z: 0}
   Mask:
     serializedVersion: 2
     m_Bits: 1536
