@@ -38,9 +38,13 @@ public class EnemyScript : MonoBehaviour, IKillable {
 	{
 		if (StartingWeapon)
 		{
+			
+			Quaternion save = transform.rotation;
+			transform.rotation = new Quaternion(0,0,0,0); // very degueulasse but i'm nul en maths so foutez moi la paix
 			_weaponObj = Instantiate(StartingWeapon, transform.position + new Vector3(-0.2f, -0.2f, 0f),
 				transform.rotation, transform);
 			_weapon = _weaponObj.GetComponent<Weapon>();
+			transform.rotation = save;
 			if (_weapon.GetComponent<SpriteRenderer>())
 				_weaponObj.GetComponent<SpriteRenderer>().sprite = _weapon.ViewModel;
 			_weapon.IsEquipped = true;
@@ -118,7 +122,6 @@ public class EnemyScript : MonoBehaviour, IKillable {
 		}
 		else if (charac.gameObject.CompareTag("Weapon") && !_hasWeaponEquipped)
 		{
-			Debug.Log(charac.gameObject);
 			if (charac.GetComponentInParent<Weapon>().IsEquipped == false && charac.GetComponentInParent<Weapon>().Ammo > 0)
 			{
 				Move(charac.gameObject);
@@ -183,7 +186,6 @@ public class EnemyScript : MonoBehaviour, IKillable {
 		}
 		else
 		{
-			Debug.Log("Pass here");
 			_target = target.transform.position;
 			_target.z = 0;
 			targetPos = getTargetDir(_target, objectPos);
