@@ -15,7 +15,6 @@ public class PlayerScript : MonoBehaviour, IKillable
 	private AudioSource _source;
 	public AudioClip[] DeathSounds;
 	private GameObject _defaultWeaponObj;
-	public GameObject EndCheckPoint;
 	private Rigidbody2D _body;
 	private float _horizontal;
 	private float _vertical;
@@ -109,7 +108,7 @@ public class PlayerScript : MonoBehaviour, IKillable
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.CompareTag("Finish"))
-			GameManager.Gm.Win = true;
+			Manager.GetComponent<GameManager>().Win = true;
 	}
 
 	/*private void OnCollisionEnter2D(Collision2D other)

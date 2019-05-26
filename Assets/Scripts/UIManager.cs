@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Gm.IsDead || (!AreStillEnemiesAlive() && Gm.Win))
+		if (Gm.IsDead || !AreStillEnemiesAlive() || Gm.Win)
 			ShowEndPanel();
 		else if(Input.GetKeyDown(KeyCode.Escape))
 		{

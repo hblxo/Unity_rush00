@@ -3190,6 +3190,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114893157816005718, guid: 73178097a30ce4015b2d886af98503ea,
+        type: 2}
+      propertyPath: Manager
+      value: 
+      objectReference: {fileID: 1308227681}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73178097a30ce4015b2d886af98503ea, type: 2}
   m_IsPrefabParent: 0
@@ -8409,6 +8414,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Follow: {fileID: 16460894}
   Zoom: -10
+--- !u!1 &1308227681 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1279728974473894, guid: edfc53be9f4d74a7f8c4951fbbc9c529,
+    type: 2}
+  m_PrefabInternal: {fileID: 376001293}
 --- !u!1 &1312661514
 GameObject:
   m_ObjectHideFlags: 0
