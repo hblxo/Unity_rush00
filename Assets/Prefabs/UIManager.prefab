@@ -51,5 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13719a5218704aab804f764291b6a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GM: {fileID: 0}
+  Gm: {fileID: 0}
   Ammo: {fileID: 0}
+  EndingText: {fileID: 0}
+  TimerText: {fileID: 0}
+  Source: {fileID: 0}
+  EndSounds:
+  - {fileID: 8300000, guid: 7faccf86862cc43bb9a5589bbb6c955f, type: 3}
+  - {fileID: 8300000, guid: 3f823d776f2224f7eaa3e3ad6976db1b, type: 3}
+  EndingPanel: {fileID: 0}
