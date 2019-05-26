@@ -11,7 +11,11 @@ public class UIManager : MonoBehaviour
 	public Text EndingText;
 	public Text TimerText;
 	private Time _timer;
+	public AudioSource Source;
+	public AudioClip[] EndSounds;
 
+	private bool endhasbeenplayed;
+	
 	public GameObject EndingPanel;
 	GameObject[] _pauseObjects;
 
@@ -20,13 +24,15 @@ public class UIManager : MonoBehaviour
 		SetProperties();
 		Time.timeScale = 1;
 		_pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+		Source = GameObject.Find("AudioManager").GetComponent<AudioSource>();
 		HidePaused();
+		endhasbeenplayed = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Gm.IsDead || !AreStillEnemiesAlive() || Gm.Win)
+		if ((Gm.IsDead || !AreStillEnemiesAlive() || Gm.Win) && !endhasbeenplayed)
 			ShowEndPanel();
 		else if (Input.GetKeyDown("r"))
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -90,9 +96,12 @@ public class UIManager : MonoBehaviour
 	public void ShowEndPanel()
 	{
 		EndingText.text = Gm.IsDead ? "You Lose !" : "Roxxxor";
-		Time.timeScale = 0;
 		TimerText.text = Time.timeSinceLevelLoad.ToString();
+		Source.clip = EndSounds[(Gm.IsDead ? 0 : 1)];
+		Source.Play();
+		Time.timeScale = 0;
 		EndingPanel.SetActive(true);
+		endhasbeenplayed = true;
 	}
 	
 	public void Exit()
