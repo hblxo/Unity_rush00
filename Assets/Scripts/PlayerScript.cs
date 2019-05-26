@@ -11,6 +11,9 @@ public class PlayerScript : MonoBehaviour, IKillable
 	private Animator _animator;
 	public GameObject StartingWeapon;
 	public GameObject DefaultWeapon;
+	public GameObject Manager;
+	private AudioSource _source;
+	public AudioClip[] DeathSounds;
 	private GameObject _defaultWeaponObj;
 	private Rigidbody2D _body;
 	private float _horizontal;
@@ -34,12 +37,15 @@ public class PlayerScript : MonoBehaviour, IKillable
 			_body = GetComponent<Rigidbody2D>();
 		if (_weaponObj != DefaultWeapon)
 			_hasWeaponEquipped = true;
+		_source = GameObject.Find("AudioManager").GetComponent<AudioSource>();
 		Debug.Log("Player spawned at: " + transform.position);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Time.timeScale == 0)
+			return;
 		_horizontal = Input.GetAxisRaw("Horizontal");
 		_vertical = Input.GetAxisRaw("Vertical");
 		if (_horizontal != 0|| _vertical != 0)
@@ -98,7 +104,13 @@ public class PlayerScript : MonoBehaviour, IKillable
 			_hasWeaponEquipped = true;
 		}
 	}
-	
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.CompareTag("Finish"))
+			Manager.GetComponent<GameManager>().Win = true;
+	}
+
 	/*private void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Lethal"))
@@ -110,7 +122,8 @@ public class PlayerScript : MonoBehaviour, IKillable
 
 	public void Damage()
 	{
-		GameManager.Gm.IsDead = true;
+		Manager.GetComponent<GameManager>().IsDead = true;
+		_source.PlayOneShot(DeathSounds[Random.Range(0, DeathSounds.Length)]);
 //		Destroy(gameObject);
 	}
 	

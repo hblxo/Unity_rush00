@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	[HideInInspector] public GameObject[] _enemies;
 	public GameObject Player;
 	public bool IsDead = false;
+	public bool Win = false;
 	
 	//Singleton basique  : Voir unity design patterns sur google.
 	void Awake () {
