@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour, IKillable
 	public GameObject StartingWeapon;
 	public GameObject DefaultWeapon;
 	private GameObject _defaultWeaponObj;
+	public GameObject EndCheckPoint;
 	private Rigidbody2D _body;
 	private float _horizontal;
 	private float _vertical;
@@ -100,7 +101,13 @@ public class PlayerScript : MonoBehaviour, IKillable
 			_hasWeaponEquipped = true;
 		}
 	}
-	
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.CompareTag("Finish"))
+			GameManager.Gm.Win = true;
+	}
+
 	/*private void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Lethal"))
