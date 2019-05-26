@@ -7,6 +7,10 @@ using Random = UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour, IKillable {
 	
+	public GameObject nextCheckpoint;
+	private bool hasTarget;
+
+
 	public float Speed = 1f;
 	private Vector3 _playerPos;
 	private GameObject _weaponObj;
@@ -16,7 +20,7 @@ public class EnemyScript : MonoBehaviour, IKillable {
 	private bool _hasWeaponEquipped;
 	private Rigidbody2D _body;
 	private Animator _animator;
-	private Vector3 _target;
+	public Vector3 _target;
 	private bool _isMoving;
 	public LayerMask Mask;
 	public GameObject Head;
@@ -48,6 +52,11 @@ public class EnemyScript : MonoBehaviour, IKillable {
 				_hasWeaponEquipped = true;
 		}
 
+		if(nextCheckpoint){
+			Move(nextCheckpoint);
+		}
+		hasTarget = false;
+
 		Head.GetComponent<SpriteRenderer>().sprite = HeadSprites[Random.Range(0, HeadSprites.Length)];
 		Body.GetComponent<SpriteRenderer>().sprite = BodySprites[Random.Range(0, BodySprites.Length)];
 		_animator = GetComponentInChildren<Animator>();
@@ -58,7 +67,19 @@ public class EnemyScript : MonoBehaviour, IKillable {
 	// Update is called once per frame
 	void Update()
 	{
-		if (_isMoving)
+		//Debug((transform.position == nextCheckpoint.transform.position));
+		if (nextCheckpoint && transform.position == nextCheckpoint.transform.position){
+			nextCheckpoint = nextCheckpoint.GetComponent<Checkpoint>().nextCheckpoint;
+			Move(nextCheckpoint);
+		}
+		//Debug.Log(nextCheckpoint = (nextCheckpoint && transform.position == nextCheckpoint.transform.position) ? nextCheckpoint.GetComponent<Checkpoint>().nextCheckpoint : nextCheckpoint);
+		if (!hasTarget && nextCheckpoint)
+		{
+			//Move(nextCheckpoint);
+			transform.position = Vector3.MoveTowards(transform.position, _target, Speed * Time.deltaTime);
+			_animator.SetBool("walk", true);
+		}
+		if (_isMoving && hasTarget)
 		{
 			transform.position = Vector3.MoveTowards(transform.position, _playerPos, Speed * Time.deltaTime);
 			_animator.SetBool("walk", true);
@@ -67,7 +88,10 @@ public class EnemyScript : MonoBehaviour, IKillable {
 		if (transform.position == _playerPos)
 		{
 			_isMoving = false;
-			_animator.SetBool("walk", false);
+			if (!nextCheckpoint)
+				_animator.SetBool("walk", false);
+			hasTarget = false;
+			
 		}
 	}
 
@@ -146,20 +170,38 @@ public class EnemyScript : MonoBehaviour, IKillable {
 		Destroy(gameObject);
 	}
 	
-	public void Move(GameObject player)
+	public void Move(GameObject target)
 	{
-		_playerPos = player.transform.position;
-		_playerPos.z = transform.position.z;
-		_target = player.transform.position;
-		_target.z = 0;
-
+		Vector2 targetPos;
 		Vector3 objectPos = transform.position;
-		_target.x = _target.x - objectPos.x;
-		_target.y = _target.y - objectPos.y;
-		float angle = Mathf.Atan2(_target.y, _target.x) * Mathf.Rad2Deg;
+
+		if (target.tag == "Player" || target.tag == "Weapon"){
+			hasTarget = true;
+			_playerPos = target.transform.position;
+			_playerPos.z = transform.position.z;
+			targetPos = getTargetDir(_playerPos, objectPos);
+		}
+		else
+		{
+			Debug.Log("Pass here");
+			_target = target.transform.position;
+			_target.z = 0;
+			targetPos = getTargetDir(_target, objectPos);
+		}
+		
+		float angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
 		angle += 90;
 		transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 		_isMoving = true;
+		
+	}
+
+	private Vector2 getTargetDir(Vector2 targetPos, Vector2 objectPos){
+		Vector2 targetDir;
+
+		targetDir.x = targetPos.x - objectPos.x;
+		targetDir.y = targetPos.y - objectPos.y;
+		return targetDir;
 	}
 
 	private void OnDestroy()
