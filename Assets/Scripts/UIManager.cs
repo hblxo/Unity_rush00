@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
 	{
 		EndingText.text = Gm.IsDead ? "You Lose !" : "Roxxxor";
 		Time.timeScale = 0;
-		TimerText.text = Time.time.ToString();
+		TimerText.text = Time.timeSinceLevelLoad.ToString();
 		EndingPanel.SetActive(true);
 	}
 	
