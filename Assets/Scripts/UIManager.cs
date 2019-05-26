@@ -28,6 +28,8 @@ public class UIManager : MonoBehaviour
 	{
 		if (Gm.IsDead || !AreStillEnemiesAlive() || Gm.Win)
 			ShowEndPanel();
+		else if (Input.GetKeyDown("r"))
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		else if(Input.GetKeyDown(KeyCode.Escape))
 		{
 			if(Time.timeScale == 1)
@@ -90,8 +92,6 @@ public class UIManager : MonoBehaviour
 		EndingText.text = Gm.IsDead ? "You Lose !" : "Roxxxor";
 		Time.timeScale = 0;
 		TimerText.text = Time.time.ToString();
-		if (Input.GetKeyDown("r"))
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		EndingPanel.SetActive(true);
 	}
 	
