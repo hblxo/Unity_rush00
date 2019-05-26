@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unarmed : Weapon {
+public class Katana : Weapon {
 
 	// Use this for initialization
 	private new void Start () {
@@ -25,26 +25,22 @@ public class Unarmed : Weapon {
 			direction.x += Random.Range(-Spread, Spread);
 			direction.y += Random.Range(-Spread, Spread);
 			direction = direction.normalized;
-			var clone = Instantiate(Projectile, transform.position + direction * 0.4f, transform.rotation * Quaternion.Euler(0, 0, -90f));
+			var clone = Instantiate(Projectile, transform.position + direction * 0.6f, transform.rotation * Quaternion.Euler(0, 0, -90f));
 			Bullet blt = clone.GetComponent<Bullet>();
 			blt.transform.parent = transform;
 			blt.Direction = direction;
 			NextShot = Time.time + FireRate;
+			clone.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 		}
 	}
 
 	public override void Equip(GameObject parent)
 	{
-		Quaternion save = transform.parent.rotation;
-		transform.parent.rotation = new Quaternion(0,0,0,0); // very degueulasse but i'm nul en maths so foutez moi la paix
-		transform.position = transform.parent.transform.position + new Vector3(-0.2f, -0.2f, 0f);
-		transform.parent.rotation = save;
-		transform.rotation = transform.parent.rotation;
-		IsEquipped = true;
+		base.Equip(parent);
 	}
 	
 	public void Drop()
 	{
-		
+		base.Drop();
 	}
 }

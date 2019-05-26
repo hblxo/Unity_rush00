@@ -9,44 +9,43 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1178407156727138}
+  m_RootGameObject: {fileID: 1732077156016820}
   m_IsPrefabParent: 1
---- !u!1 &1178407156727138
+--- !u!1 &1732077156016820
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4396477672250500}
-  - component: {fileID: 82352294965537006}
-  - component: {fileID: 114804099969745692}
-  m_Layer: 12
-  m_Name: Weapon_Fists
-  m_TagString: Weapon
+  - component: {fileID: 4873007112200840}
+  - component: {fileID: 82735639819561966}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4396477672250500
+--- !u!4 &4873007112200840
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1178407156727138}
+  m_GameObject: {fileID: 1732077156016820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.931938, y: -2.598076, z: 0.049964275}
+  m_LocalPosition: {x: -1.0547943, y: -0.34370834, z: 0.03125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &82352294965537006
+--- !u!82 &82735639819561966
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1178407156727138}
+  m_GameObject: {fileID: 1732077156016820}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -121,32 +120,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114804099969745692
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1178407156727138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deea03a9f31eb4f07b66d080cf25f63a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Projectile: {fileID: 1319725376966974, guid: 94655a04b11bb4dd5a24cf4f4519b921, type: 2}
-  FireRate: 1
-  Range: 0
-  BulletSpeed: 0
-  Force: 0
-  Ammo: 0
-  NextShot: 0
-  ViewModel: {fileID: 0}
-  WorldModel: {fileID: 0}
-  ShotSound: {fileID: 8300000, guid: 48d68d12751aa44cb87bfa4f2ca98bb6, type: 3}
-  NoAmmoSound: {fileID: 0}
-  EquipSound: {fileID: 0}
-  Spread: 0
-  IsEquipped: 0
-  NumberOfShots: 1
-  _source: {fileID: 0}
-  Target: {x: 0, y: 0, z: 0}
-  Direction: {x: 0, y: 0, z: 0}
